@@ -1,6 +1,6 @@
-import { World } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 import { EventNotDefined } from "./errors.js";
-import { error } from "./utils/index.js";
+//import { error } from "./utils/index.js";
 
 
 export const Event = new (class {
@@ -12,7 +12,7 @@ export const Event = new (class {
     #callbacks = [];
 
     on(eventName, callback) {
-        const event = World.events[eventName];
+        const event = world.events[eventName] ?? world.beforeEvents?.[eventName];
         if(!event) {
             throw new EventNotDefined(eventName);
         }
@@ -36,8 +36,8 @@ export const Event = new (class {
     }
 
     once(eventName, callback) {
-        const event = World.events[eventName];
-        if(!event) {
+      const event = world.events[eventName] ?? world.beforeEvents?.[eventName];
+      if(!event) {
             throw new EventNotDefined(eventName);
         }
         const newCallback = eventData => {
@@ -65,7 +65,8 @@ export const Event = new (class {
             if(c.originalCallback !== callback) {
                 return true;
             }
-            World.events[c.eventName].unsubscribe(c.callback);
+            const event = world.events[eventName] ?? world.beforeEvents?.[eventName];
+            event[c.eventName].unsubscribe(c.callback);
             return false;
         });
     }

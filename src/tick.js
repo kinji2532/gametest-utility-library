@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft";
+import { system } from "@minecraft/server";
 
 
 class Interval {
@@ -46,7 +46,7 @@ export const Tick = new (class {
     #intervalHandler = new IntervalHandler();
 
     constructor() {
-        world.events.tick.subscribe(_ => this.#intervalHandler.tick());
+        system.runInterval(_ => this.#intervalHandler.tick(), 1);
     }
 
     setInterval(callback, interval) {

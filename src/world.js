@@ -1,4 +1,4 @@
-import { World as _World } from "mojang-minecraft";
+import { World as _World } from "@minecraft/server";
 import { Dimension } from "./dimension.js";
 import { Player } from "./player.js";
 import { mergeObject } from "./object.js";

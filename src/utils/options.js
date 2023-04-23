@@ -1,4 +1,4 @@
-import * as m from "mojang-minecraft";
+import * as m from "@minecraft/server";
 
 
 function generateClass(baseClass) {
@@ -13,10 +13,11 @@ function generateClass(baseClass) {
     }
 }
 
-export const BlockRaycastOptions = generateClass(m.BlockRaycastOptions);
-export const EntityDataDrivenTriggerEventOptions = generateClass(m.EntityDataDrivenTriggerEventOptions);
-export const EntityEventOptions = generateClass(m.EntityEventOptions);
-export const EntityQueryOptions  = generateClass(m.EntityQueryOptions);
-export const EntityQueryScoreOptions = generateClass(m.EntityQueryScoreOptions);
-export const EntityRaycastOptions = generateClass(m.EntityRaycastOptions);
-export const ExplosionOptions = generateClass(m.ExplosionOptions);
+// 存在しないclass達
+// export const BlockRaycastOptions = generateClass(m.BlockRaycastOptions);
+// export const EntityDataDrivenTriggerEventOptions = generateClass(m.EntityDataDrivenTriggerEventOptions);
+// export const EntityEventOptions = generateClass(m.EntityEventOptions);
+// export const EntityQueryOptions  = generateClass(m.EntityQueryOptions);
+// export const EntityQueryScoreOptions = generateClass(m.EntityQueryScoreOptions);
+// export const EntityRaycastOptions = generateClass(m.EntityRaycastOptions);
+// export const ExplosionOptions = generateClass(m.ExplosionOptions);

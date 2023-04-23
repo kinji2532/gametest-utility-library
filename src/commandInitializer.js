@@ -1,9 +1,10 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 void function() {
-    const func = (ev) => {
-        ev.player.runCommand("list");
-        world.events.playerJoin.unsubscribe(func);
+    const func = async ({ initialSpawn, player }) => {
+        if(!initialSpawn) return;
+        const result = await player.runCommandAsync("list");
+        if(result.successCount) world.events.playerSpawn.unsubscribe(func);
     }
-    world.events.playerJoin.subscribe(func);
+    world.events.playerSpawn.subscribe(func);
 }();

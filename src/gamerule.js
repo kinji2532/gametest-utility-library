@@ -18,16 +18,16 @@ export const GameRule = new (class {
         return [ key, this.#gameruleValueConverter(rawValue) ];
     }
     
-    get(ruleName) {
-        try {
-            const { statusMessage } = Command.run("gamerule " + ruleName);
-            const [ _, value ] = this.#gameruleParser(statusMessage);
-            return value;
-        }
-        catch {
-            return;
-        }
-    }
+    // get(ruleName) {
+    //     try {
+    //         const { statusMessage } = Command.run("gamerule " + ruleName);
+    //         const [ _, value ] = this.#gameruleParser(statusMessage);
+    //         return value;
+    //     }
+    //     catch {
+    //         return;
+    //     }
+    // }
     
     set(ruleName, value) {
         try {
@@ -39,9 +39,9 @@ export const GameRule = new (class {
         return true;
     }
     
-    all() {
-        const { statusMessage } = Command.run("gamerule");
-        const gamerules = statusMessage.split(", ").map(this.#gameruleParser);
-        return Object.fromEntries(gamerules);
-    }
+    // all() {
+    //     const { statusMessage } = Command.run("gamerule");
+    //     const gamerules = statusMessage.split(", ").map(this.#gameruleParser);
+    //     return Object.fromEntries(gamerules);
+    // }
 })();

@@ -12,13 +12,13 @@ export class Player {
         const rawText = new RawTextBuilder()
             .addTranslate(text, ..._with.map(String))
             .buildJson();
-        this.#player.runCommand("tellraw @s " + rawText);
+        this.#player.runCommandAsync("tellraw @s " + rawText);
     }
 
     showRawtext(text, ..._with) {
         const rawText = new RawTextBuilder()
             .addTranslate(text, ..._with.map(String))
             .buildJson();
-        this.#player.runCommand("titleraw @s actionbar " + rawText);
+        this.#player.runCommandAsync("titleraw @s actionbar " + rawText);
     }
 }

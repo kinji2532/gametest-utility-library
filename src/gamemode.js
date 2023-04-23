@@ -1,11 +1,11 @@
-import { GameMode } from "mojang-minecraft";
+import { GameMode } from "@minecraft/server";
 
 
 class _GameMode {
-    #checkGameMode(player, mode) {
+    async #checkGameMode(player, mode) {
         try {
-            player.runCommand(`testfor @s[m=${mode}]`);
-            return true;
+            const result = await player.runCommandAsync(`testfor @s[m=${mode}]`);
+            return !!result.successCount;
         } catch {
             return false;
         }
@@ -23,6 +23,10 @@ class _GameMode {
         return this.#checkGameMode(player, "a");
     }
 
+    isSpectator(player) {
+        return this.#checkGameMode(player, "sp");
+    }
+    
     isDefault(player) {
         return this.#checkGameMode(player, "d");
     }
@@ -36,6 +40,9 @@ class _GameMode {
         }
         if(this.isAdventure(player)) {
             return GameMode.adventure;
+        }
+        if(this.isSpectator(player)) {
+            return GameMode.spectator;
         }
     }
 }

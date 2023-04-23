@@ -1,4 +1,4 @@
-import { world } from "mojang-minecraft";
+import { world } from "@minecraft/server";
 
 import toJson from "./toJson.js";
 import { RawTextBuilder } from "../rawTextBuilder/index.js";

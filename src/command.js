@@ -1,22 +1,22 @@
-import { Dimension, Entity } from "mojang-minecraft";
+// import { Dimension, Entity } from "@minecraft/server";
 
 
 export class Command {
     #run(command, object) {
-        if(object.runCommand === undefined) return;
-        return object.runCommand(command);
+        if(object.runCommandAsync === undefined) return;
+        return object.runCommandAsync(command);
     }
 
-    static run(command, object) {
-        return this.#run(command, object);
+    static async run(command, object) {
+        return await this.#run(command, object);
     }
 
-    static runSafe(command, object) {
+    static async runSafe(command, object) {
         try {
-            return new CommandResult(false, this.#run(command, dimension));
+          return await this.#run(command, object);
         }
         catch(e) {
-            return new CommandResult(true, e);
+            return JSON.parse(e);
         }
     }
 
